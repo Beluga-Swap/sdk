@@ -1,8 +1,8 @@
-# BelugaSwap SDK
+# BeluSwap SDK
 
-Human-friendly TypeScript SDK for BelugaSwap concentrated liquidity AMM on Stellar.
+Human-friendly TypeScript SDK for BeluSwap concentrated liquidity AMM on Stellar.
 
-## Why BelugaSwap SDK?
+## Why BeluSwap SDK?
 
 **No more manual conversions!** Use normal numbers instead of:
 - ❌ Converting amounts to stroops (7 decimals)
@@ -17,16 +17,16 @@ Human-friendly TypeScript SDK for BelugaSwap concentrated liquidity AMM on Stell
 ## Installation
 
 ```bash
-npm install @belugaswap/sdk
+npm install @beluswap/sdk
 ```
 
 ## Quick Start
 
 ```typescript
-import BelugaSwapSDK from '@belugaswap/sdk';
+import BeluSwapSDK from '@beluswap/sdk';
 
 // Initialize SDK
-const sdk = new BelugaSwapSDK({
+const sdk = new BeluSwapSDK({
   factoryAddress: 'CFACTORY...',
   network: 'testnet', // or 'mainnet'
 });
@@ -81,16 +81,16 @@ console.log(pool.summary);
 ### 1. Initialize SDK
 
 ```typescript
-import BelugaSwapSDK from '@belugaswap/sdk';
+import BeluSwapSDK from '@beluswap/sdk';
 
 // Option A: Use predefined network
-const sdk = new BelugaSwapSDK({
+const sdk = new BeluSwapSDK({
   factoryAddress: 'CFACTORY...',
   network: 'testnet', // or 'mainnet'
 });
 
 // Option B: Custom network
-const sdk = new BelugaSwapSDK({
+const sdk = new BeluSwapSDK({
   factoryAddress: 'CFACTORY...',
   rpcUrl: 'https://your-rpc-url',
   networkPassphrase: 'Your Network ; Passphrase',
@@ -162,14 +162,14 @@ console.log(position);
 
 ## API Reference
 
-### BelugaSwapSDK
+### BeluSwapSDK
 
 Main SDK class.
 
 #### Constructor
 
 ```typescript
-new BelugaSwapSDK(config: {
+new BeluSwapSDK(config: {
   factoryAddress: string;
   poolAddress?: string;
   network?: 'testnet' | 'mainnet';
@@ -289,4 +289,4 @@ Apache 2.0
 
 - GitHub Issues: [github.com/Beluga-Swap/sdk/issues](https://github.com/Beluga-Swap/sdk/issues)
 - Discord: [discord.gg/belugaswap](https://discord.gg/belugaswap)
-- Email: support@belugaswap.io
+- Email: support@beluswap.io

@@ -1,5 +1,5 @@
 {
-  "name": "@belugaswap/sdk",
+  "name": "@beluswap/sdk",
   "version": "0.1.0",
   "description": "BelugaSwap TypeScript SDK with human-friendly inputs",
   "main": "dist/index.js",
