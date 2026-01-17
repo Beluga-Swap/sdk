@@ -1,7 +1,7 @@
 // src/factory.ts
 // Factory SDK for pool creation
 
-import { Contract, SorobanRpc } from '@stellar/stellar-sdk';
+import { Contract, SorobanRpc, xdr, Address, nativeToScVal } from '@stellar/stellar-sdk';
 import { BELUGA_CONFIG } from './config';
 import { PriceConverter, TickConverter, AmountConverter, FeeConverter, TimeConverter } from './converters';
 import type { CreatePoolParams, CreatePoolResult, GetPoolParams } from './types';
@@ -122,20 +122,35 @@ export class BelugaFactorySDK {
   }
   
   /**
-   * Get pool address
+   * Get pool address with proper ScVal conversion
    */
   async getPool(params: GetPoolParams): Promise<string | null> {
-    // Use contract, rpc, networkPassphrase when implementing
-    console.log('Contract ID:', this.contractId);
-    console.log('Using RPC:', this.rpc.serverURL);
-    console.log('Network:', this.networkPassphrase);
-    
-    const _feeBps = BELUGA_CONFIG.FEE_TIERS[params.feeTier].bps;
-    
-    // TODO: Implement contract call
-    // const result = await this.contract.call('get_pool_address', ...);
-    
-    throw new Error("Not implemented - add contract integration");
+    try {
+      const feeBps = BELUGA_CONFIG.FEE_TIERS[params.feeTier].bps;
+      
+      // Convert to ScVal using nativeToScVal
+      const tokenAScVal = nativeToScVal(params.tokenA, { type: 'address' });
+      const tokenBScVal = nativeToScVal(params.tokenB, { type: 'address' });
+      const feeBpsScVal = nativeToScVal(feeBps, { type: 'u32' });
+      
+      // Call contract
+      const result = await this.contract.call(
+        'get_pool_address',
+        tokenAScVal,
+        tokenBScVal,
+        feeBpsScVal
+      );
+      
+      // Parse result
+      if (result) {
+        return result.toString();
+      }
+      
+      return null;
+    } catch (error) {
+      console.error('Error getting pool:', error);
+      return null;
+    }
   }
   
   /**
@@ -150,7 +165,12 @@ export class BelugaFactorySDK {
    * Get total number of pools
    */
   async getTotalPools(): Promise<number> {
-    // TODO: Implement contract call
-    throw new Error("Not implemented - add contract integration");
+    try {
+      const result = await this.contract.call('get_total_pools');
+      return Number(result);
+    } catch (error) {
+      console.error('Error getting total pools:', error);
+      return 0;
+    }
   }
 }
