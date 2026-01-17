@@ -280,11 +280,6 @@ See [examples/](examples/) directory for complete examples:
 - `swap.ts` - Execute swaps
 - `monitor-position.ts` - Monitor position value
 
-## Links
-
-- **Smart Contracts**: [github.com/Beluga-Swap/core](https://github.com/Beluga-Swap/core)
-- **Documentation**: [docs.belugaswap.io](https://docs.belugaswap.io)
-- **Website**: [belugaswap.io](https://belugaswap.io)
 
 ## License
 
