@@ -125,7 +125,12 @@ export class BelugaFactorySDK {
    * Get pool address
    */
   async getPool(params: GetPoolParams): Promise<string | null> {
-    const feeBps = BELUGA_CONFIG.FEE_TIERS[params.feeTier].bps;
+    // Use contract, rpc, networkPassphrase when implementing
+    console.log('Contract ID:', this.contractId);
+    console.log('Using RPC:', this.rpc.serverURL);
+    console.log('Network:', this.networkPassphrase);
+    
+    const _feeBps = BELUGA_CONFIG.FEE_TIERS[params.feeTier].bps;
     
     // TODO: Implement contract call
     // const result = await this.contract.call('get_pool_address', ...);
